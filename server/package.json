@@ -9,6 +9,8 @@
   "author": "Mikhail Yurasov <mikhail.yurasov@ge.com>",
   "license": "MIT",
   "dependencies": {
+    "colors": "^1.1.2",
+    "lodash": "^4.13.1",
     "strava-v3": "^1.12.1"
   }
 }
