@@ -1,0 +1,7 @@
+/**
+ * Filters
+ */
+
+export default (app) => {
+
+};

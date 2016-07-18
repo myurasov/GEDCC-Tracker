@@ -1,0 +1,10 @@
+/.idea/
+/revision
+/environment
+/node_modules/
+/src/web/vendor/jspm_packages/
+/src/web/build/
+/src/web/app/_*.js
+/src/web/index.html
+.DS_Store
+_private
