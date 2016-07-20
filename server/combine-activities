@@ -7,9 +7,9 @@ const fs = require('fs');
 const c = require('colors');
 
 function combine() {
-  const out = `${__dirname}/data/activities-combined.json`;
+  const out = `${__dirname}/data/athletes-top.json`;
   const clubActivities = {};
-  const athletes = new Set();
+  const athletes = {};
   let dataFiles = 0;
 
   // collect club activities from all data files
@@ -20,21 +20,47 @@ function combine() {
       const activities = require(`${__dirname}/data/dumps/${f}`);
       for (const activity of activities) {
         clubActivities[activity.id] = activity;
-        athletes.add(activity.athlete.id);
       }
     } catch (e) {
-      console.error(`Unable to read data file "${f}"`);;
+      console.error(`Unable to read data file "${f}"`);
     }
 
   }
 
-  // info
+  // [info]
   console.log(c.cyan('Data files:\t\t') + dataFiles);
   console.log(c.cyan('Activities:\t\t') + _.values(clubActivities).length);
-  console.log(c.cyan('Active athletes:\t') + athletes.size);
+
+  // group activities by athlete
+
+  let m = 0;
+
+  for (const a of _.values(clubActivities)) {
+    if (!athletes[a.athlete.id]) athletes[a.athlete.id] = [];
+    athletes[a.athlete.id].push(a);
+  }
+
+  // create by-athlete summary
+
+  const athletesTop = [];
+
+  for (const activities of _.values(athletes)) {
+    const athlete = activities[0].athlete;
+
+    athletesTop.push({
+      athleteName: athlete.firstname + ' ' + athlete.lastname,
+      distance: activities.map(e => e.distance).reduce((a, b) => a + b) / 1609.34 /* meters/mile */,
+      movingTime: activities.map(e => e.moving_time).reduce((a, b) => a + b)
+    });
+  }
+
+  athletesTop.sort((a, b) => b.distance - a.distance);
+
+  // [info]
+  console.log(c.cyan('Athletes:\t\t') + _.values(athletes).length);
 
   // save to file
-  fs.writeFileSync(out, JSON.stringify(clubActivities));
+  fs.writeFileSync(out, JSON.stringify(athletesTop));
   console.log(c.cyan('File created:\t\t') + out);
 }
 
