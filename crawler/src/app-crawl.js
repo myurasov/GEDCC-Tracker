@@ -6,7 +6,7 @@
 
 const commander = require('commander');
 const packageJson = require('../package.json');
-const CrawlCommand = require('./CrawlCommand');
+const CrawlCommand = require('./lib/CrawlCommand');
 const parseBool = require('./lib/utils/parseBool');
 
 commander
