@@ -8,6 +8,11 @@ const path = require('path');
 const webdriverio = require('webdriverio');
 
 class AbstractCommand {
+
+  construtor() {
+    this._createClient();
+  }
+
   run() {
     return this._run()
       .then(() => this._debug('done'))
@@ -26,7 +31,14 @@ class AbstractCommand {
 
   _createClient() {
     this._client = webdriverio.remote(this.webdriverioOptions).init();
-    return this;
+  }
+
+  _loginToStrava() {
+    return this._client
+      .url('https://www.strava.com/login')
+      .setValue('#email', this.stravaLogin)
+      .setValue('#password', this.stravaPassword)
+      .submitForm('#login_form')
   }
 
   _writeOutput(data) {

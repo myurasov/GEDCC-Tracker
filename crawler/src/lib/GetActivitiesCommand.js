@@ -5,14 +5,17 @@
 const AbstractCommand = require('./AbstractCommand');
 
 class GetActivitiesCommand extends AbstractCommand {
+
   _run() {
-    return new Promise((resolve, reject) => {
-      this._createClient();
-      return this._client
-        .url('https://www.strava.com/login')
-        .end();
-    });
+    this._createClient();
+
+    // login
+    return this._loginToStrava()
+
+      // done
+      .end();
   }
+
 }
 
 module.exports = GetActivitiesCommand;

@@ -7,27 +7,18 @@ const AbstractCommand = require('./AbstractCommand');
 
 class GetAthletesCommand extends AbstractCommand {
 
-  constructor() {
-    super();
-  }
-
   _run() {
-    return new Promise((resolve, reject) => {
-      this._createClient();
-      return this._client
-        .url('https://www.strava.com/login')
+    this._createClient();
 
-        // login
-        .setValue('#email', this.stravaLogin)
-        .setValue('#password', this.stravaPassword)
-        .submitForm('#login_form')
+    // login
+    return this._loginToStrava()
 
-        // get athletes
-        .then(() => this._getAthletes())
-        .then(v => this._writeOutput(v))
+      // get athletes
+      .then(() => this._getAthletes())
+      .then(v => this._writeOutput(v))
 
-        .end();
-    });
+      // done
+      .end();
   }
 
   /**
