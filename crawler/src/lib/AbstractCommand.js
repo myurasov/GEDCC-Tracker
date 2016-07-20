@@ -5,6 +5,7 @@
 const fs = require('fs');
 const c = require('colors');
 const path = require('path');
+const webdriverio = require('webdriverio');
 
 class AbstractCommand {
   run() {
@@ -21,6 +22,11 @@ class AbstractCommand {
     return new Promise((resolve, reject) => {
       resolve();
     });
+  }
+
+  _createClient() {
+    this._client = webdriverio.remote(this.webdriverioOptions).init();
+    return this;
   }
 
   _writeOutput(data) {

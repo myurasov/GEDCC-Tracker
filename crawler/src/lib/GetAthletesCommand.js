@@ -2,19 +2,13 @@
  * Crawl command
  */
 
-const webdriverio = require('webdriverio');
 const promiseWhile = require('./utils/promiseWhile');
 const AbstractCommand = require('./AbstractCommand');
 
-class CrawlCommand extends AbstractCommand {
+class GetAthletesCommand extends AbstractCommand {
 
   constructor() {
     super();
-  }
-
-  _createClient() {
-    this._client = webdriverio.remote(this.webdriverioOptions).init();
-    return this;
   }
 
   _run() {
@@ -72,4 +66,4 @@ class CrawlCommand extends AbstractCommand {
   }
 }
 
-module.exports = CrawlCommand;
+module.exports = GetAthletesCommand;
