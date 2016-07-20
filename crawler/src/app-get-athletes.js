@@ -5,11 +5,11 @@
 'use strict';
 
 const fs = require('fs');
-const config = require('./config.local') || require('./config');
 const commander = require('commander');
 const packageJson = require('../package.json');
-const CrawlCommand = require('./lib/CrawlCommand');
 const parseBool = require('./lib/utils/parseBool');
+const GetAthletesCommand = require('./lib/GetAthletesCommand');
+const config = require('./config.local') || require('./config');
 
 commander
   .option('-d, --debug', 'debug output')
@@ -18,7 +18,7 @@ commander
 
 // bootstrap command
 
-const command = new CrawlCommand();
+const command = new GetAthletesCommand();
 
 command.debug = parseBool(commander.debug);
 command.version = packageJson.version;

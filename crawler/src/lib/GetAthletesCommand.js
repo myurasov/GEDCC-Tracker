@@ -33,7 +33,8 @@ class CrawlCommand extends AbstractCommand {
         // get athletes
         .then(() => this._getAthletes())
         .then(v => {
-          fs.mkdirSync(path.dirname(this.outputPath));
+          if (!fs.existsSync(path.dirname(this.outputPath)))
+            fs.mkdirSync(path.dirname(this.outputPath));
           fs.writeFileSync(this.outputPath, JSON.stringify(v));
           this._debug('Data file created: ', this.outputPath);
         })

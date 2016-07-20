@@ -7,5 +7,5 @@ const packageJson = require('../package.json');
 
 commander
   .version(packageJson.version)
-  .command('crawl', 'Crawl Strava for club totals')
+  .command('get-athletes', 'Crawl Strava for club athletes')
   .parse(process.argv);
