@@ -40,3 +40,39 @@ module.exports.getAthletes = function getAthletes(clubId, accessToken) {
     ).then(() => resolve(res), reject)
   });
 }
+
+/**
+ * Get athlete
+ * @param {number|string} athleteId
+ * @param {string} accessToken
+ * @returns {Promise}
+ */
+module.exports.getAthlete = function (athleteId, accessToken) {
+  return new Promise((resolve, reject) => {
+    strava.athletes.get({
+      id: athleteId,
+      access_token: accessToken
+    }, (e, d) => {
+      if (e) reject(e);
+      resolve(d);
+    });
+  });
+}
+
+/**
+ * Get athlete stats
+ * @param {number|string} athleteId
+ * @param {string} accessToken
+ * @returns {Promise}
+ */
+module.exports.getAthleteStats = function (athleteId, accessToken) {
+  return new Promise((resolve, reject) => {
+    strava.athlete.listActivities({
+      id: athleteId,
+      access_token: accessToken
+    }, (e, d) => {
+      if (e) reject(e);
+      resolve(d);
+    });
+  });
+}

@@ -6,8 +6,9 @@ const _ = require('lodash');
 const fs = require('fs');
 const c = require('colors');
 
+const out = `${__dirname}/data/athletes-top.json`;
+
 function combine() {
-  const out = `${__dirname}/data/athletes-top.json`;
   const clubActivities = {};
   const athletes = {};
   let dataFiles = 0;
