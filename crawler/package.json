@@ -1,0 +1,26 @@
+{
+  "name": "gedcctracker",
+  "version": "0.0.1",
+  "description": "GE Digital Charity Challenge info crawler",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mikhail Yurasov <mikhail.yurasov@ge.com>",
+  "license": "MIT",
+  "dependencies": {
+    "colors": "^1.1.2",
+    "commander": "^2.9.0",
+    "lodash": "^4.13.1",
+    "webdriverio": "^4.2.1"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/myurasov/GEDCCTracker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/myurasov/GEDCCTracker/issues"
+  },
+  "homepage": "https://github.com/myurasov/GEDCCTracker#readme"
+}
