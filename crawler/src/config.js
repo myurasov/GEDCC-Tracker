@@ -5,6 +5,8 @@
 'use strict';
 
 module.exports = {
+  
+  data_path: __dirname + '/../data',
 
   strava_club_id: '198722',
   strava_login: '-',

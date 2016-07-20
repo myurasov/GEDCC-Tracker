@@ -2,5 +2,5 @@
 .DS_Store
 node_modules
 _private
-crawler/data
+crawler/data/
 *.local.js
