@@ -4,9 +4,9 @@
 
 'use strict';
 
-const commandBootstrap = require('./lib/commandBootstrap');
+const commandBootstrap = require('./lib/CrawlCommands/commandBootstrap');
 const config = require('./config.local') || require('./config');
-const GetActivitiesCommand = require('./lib/Commands/GetActivitiesCommand');
+const GetActivitiesCommand = require('./lib/CrawlCommands/GetActivitiesCommand');
 
 // bootstrap command
 const command = new GetActivitiesCommand();

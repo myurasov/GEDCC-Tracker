@@ -3,9 +3,9 @@
  */
 
 const commander = require('commander');
-const parseBool = require('./utils/parseBool');
-const packageJson = require('../../package.json');
-const config = require('../config.local') || require('../config');
+const parseBool = require('./../utils/parseBool');
+const packageJson = require('../../../package.json');
+const config = require('../../config.local.js') || require('../../config');
 
 module.exports = (command, options) => {
 

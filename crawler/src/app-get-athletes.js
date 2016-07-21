@@ -4,8 +4,8 @@
 
 'use strict';
 
-const GetAthletesCommand = require('./lib/Commands/GetAthletesCommand');
-const commandBootstrap = require('./lib/commandBootstrap');
+const GetAthletesCommand = require('./lib/CrawlCommands/GetAthletesCommand');
+const commandBootstrap = require('./lib/CrawlCommands/commandBootstrap');
 
 // bootstrap command
 const command = new GetAthletesCommand();
