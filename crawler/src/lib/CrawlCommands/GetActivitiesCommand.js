@@ -23,8 +23,6 @@ class GetActivitiesCommand extends AbstractCommand {
       .then(() => this._getAthletesStats())
       .then(() => this._writeOutput(this._data))
 
-      .pause(1e6)
-
       // done
       .end();
   }
@@ -38,9 +36,9 @@ class GetActivitiesCommand extends AbstractCommand {
     return promiseWhile(
       () => athletes.length > 0,
       () => {
+        this._debug('Athletes left:', athletes.length)
         const athlete = athletes.shift();
-        this._debug('Athletes left: ', athletes.length)
-        this._debug('Fetching : ', athlete.name)
+        this._debug('Fetching:', athlete.name)
         return this._getAthleteStats(athlete.id)
       }
     );
@@ -77,13 +75,12 @@ class GetActivitiesCommand extends AbstractCommand {
                 .then(activities => {
 
                   for (const a of activities) {
-
-                    if (a.match(/icon-run/) /* intereste din runs only */) {
+                    if (a.match(/icon-run/) || a.match(/icon-walk/)/* interested in runs/walks only */) {
                       if (a.match(/<span class="unit">/) /* otherwise it's a blank one */) {
 
                         // check if distance is in miles
                         if (!a.match(/<span class="unit">mi/) /* distance */ || !a.match(/<span class="unit">\/mi/) /* pace */) {
-                          console.log(a);
+                          this._debug('Activity HTML:', a);
                           throw new Error('Only miles are supported as units');
                         }
 
