@@ -16,7 +16,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       url: '/',
       views: {
         'screen': {
-          templateUrl: 'app/views/screen.main.html',
+          templateUrl: 'app/screen.main.html',
           controller: ScreenMainController
         }
       }

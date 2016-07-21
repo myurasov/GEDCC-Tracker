@@ -13,4 +13,13 @@ export default (app) => {
     }
   })
 
+  /**
+   * Format name
+   */
+  app.filter('name', () => v => {
+    if (v) {
+      return v.split(' ').map(w => w.substr(0, 1).toUpperCase() + w.substr(1)).join(' ');
+    }
+  })
+
 };

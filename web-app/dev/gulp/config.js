@@ -34,7 +34,7 @@ exports.templates = {
     '!' + exports.paths.web + '/index.html'
   ],
   watch_src: [
-    exports.paths.web + '/app/views/**/*.html',
+    exports.paths.web + '/app/**/*.html',
   ],
   options: {
     filename: '_templates.js',

@@ -7,6 +7,7 @@ import 'angular';
 import 'angular-material';
 import 'angular-ui-router';
 import 'lodash';
+import 'angular-timeago';
 
 import states from './app.states';
 import filters from './app.filters';
@@ -19,6 +20,7 @@ import DataRepository from './data.repository';
 const app = angular.module('app', [
   'ui.router',
   'ngMaterial',
+  'yaru22.angular-timeago',
   templatesModule.name
 ]);
 

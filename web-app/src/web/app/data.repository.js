@@ -5,7 +5,11 @@
 
 export default /* @ngInject */ ($http, athletes_endpoint, activities_endpoint) => {
 
-  let athletesData, activitiesData, athletes = [];
+  let athletesData,
+    athletesUpdateDate,
+    activitiesData,
+    activitiesUpdateDate,
+    athletesTop;
 
   function getAthletes() {
     return new Promise((resolve, reject) => {
@@ -13,6 +17,7 @@ export default /* @ngInject */ ($http, athletes_endpoint, activities_endpoint) =
         method: 'GET',
         url: athletes_endpoint
       }).then(r => {
+        athletesUpdateDate = new Date(r.headers('last-modified'));
         athletesData = r.data;
         resolve(r.data);
       }, reject)
@@ -25,6 +30,7 @@ export default /* @ngInject */ ($http, athletes_endpoint, activities_endpoint) =
         method: 'GET',
         url: activities_endpoint
       }).then(r => {
+        activitiesUpdateDate = new Date(r.headers('last-modified'));
         activitiesData = r.data;
         resolve(r.data);
       }, reject)
@@ -37,7 +43,7 @@ export default /* @ngInject */ ($http, athletes_endpoint, activities_endpoint) =
    */
   function getTop() {
     return new Promise((resolve, reject) => {
-      athletes = [];
+      athletesTop = [];
 
       getAthletes().then(getActivities)
         .then(() => {
@@ -58,7 +64,7 @@ export default /* @ngInject */ ($http, athletes_endpoint, activities_endpoint) =
                 })
                 .reduce((a, b) => a + b);
 
-              athletes.push({
+              athletesTop.push({
                 athlete,
                 totalDistanceMi: athleteDistance,
                 totalTimeSec: athleteTime
@@ -66,17 +72,16 @@ export default /* @ngInject */ ($http, athletes_endpoint, activities_endpoint) =
             }
           }
 
-          athletes.sort((a, b) => b.totalDistanceMi - a.totalDistanceMi);
-          resolve(athletes);
+          athletesTop.sort((a, b) => b.totalDistanceMi - a.totalDistanceMi);
+          resolve(athletesTop);
 
         }, reject);
     });
   }
 
   return {
-    getAthletes,
-    getActivities,
-    getTop
+    getTop,
+    getActivitiesUpdateDate: () => activitiesUpdateDate
   }
 
 }
