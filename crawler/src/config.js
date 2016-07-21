@@ -9,7 +9,7 @@ module.exports = {
   data_path: __dirname + '/../data',
 
   strava_club_id: '198722',
-  strava_login: 'me@yurasov.me',
+  strava_login: '-',
   strava_password: '-',
 
   start_week: 201625,
@@ -20,7 +20,14 @@ module.exports = {
     waitforTimeout: 10000,
     desiredCapabilities: {
       browserName: 'chrome',
-      version: '50'
+      version: '50',
+      chromeOptions: {
+        prefs: {
+          profile: {
+            default_content_setting_values: {images: 2}
+          }
+        }
+      }
     }
   }
 

@@ -1,0 +1,29 @@
+.screen.main {
+
+  .titleCell {
+    padding: 10px;
+    height: 50px;
+
+    &.ccLogo {
+      background-image: url('/images/ge.svg');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center left;
+
+      @include screen_xs {
+        background-position: center center;
+      }
+    }
+
+    &.extraInfo {
+      text-align: right;
+
+      @include screen_xs {
+        text-align: center;
+        font-size: 0.9em;
+      }
+    }
+
+  }
+
+}

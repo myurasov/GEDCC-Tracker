@@ -18,6 +18,7 @@ System.config({
     "angular-animate": "bower:angular-animate@1.5.7",
     "angular-material": "github:angular/bower-material@1.0.9",
     "angular-material-icons": "bower:angular-material-icons@0.7.0",
+    "angular-timeago": "bower:angular-timeago@0.4.3",
     "angular-ui-router": "github:angular-ui/ui-router@0.2.18",
     "babel": "npm:babel-core@5.8.38",
     "babel-runtime": "npm:babel-runtime@5.8.38",
@@ -31,6 +32,9 @@ System.config({
     "bower:angular-material-icons@0.7.0": {
       "angular": "bower:angular@1.5.7",
       "css": "github:systemjs/plugin-css@0.1.23"
+    },
+    "bower:angular-timeago@0.4.3": {
+      "angular": "bower:angular@1.5.7"
     },
     "bower:ui-router@0.3.1": {
       "angular": "bower:angular@1.5.7"
