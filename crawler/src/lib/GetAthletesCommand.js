@@ -2,38 +2,23 @@
  * Crawl command
  */
 
-const webdriverio = require('webdriverio');
 const promiseWhile = require('./utils/promiseWhile');
 const AbstractCommand = require('./AbstractCommand');
 
-class CrawlCommand extends AbstractCommand {
-
-  constructor() {
-    super();
-  }
-
-  _createClient() {
-    this._client = webdriverio.remote(this.webdriverioOptions).init();
-    return this;
-  }
+class GetAthletesCommand extends AbstractCommand {
 
   _run() {
-    return new Promise((resolve, reject) => {
-      this._createClient();
-      return this._client
-        .url('https://www.strava.com/login')
+    this._createClient();
 
-        // login
-        .setValue('#email', this.stravaLogin)
-        .setValue('#password', this.stravaPassword)
-        .submitForm('#login_form')
+    // login
+    return this._loginToStrava()
 
-        // get athletes
-        .then(() => this._getAthletes())
-        .then(v => this._writeOutput(v))
+      // get athletes
+      .then(() => this._getAthletes())
+      .then(v => this._writeOutput(v))
 
-        .end();
-    });
+      // done
+      .end();
   }
 
   /**
@@ -72,4 +57,4 @@ class CrawlCommand extends AbstractCommand {
   }
 }
 
-module.exports = CrawlCommand;
+module.exports = GetAthletesCommand;
