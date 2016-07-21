@@ -4,7 +4,7 @@
 
 const _ = require('lodash');
 const AbstractCommand = require('./AbstractCommand');
-const promiseWhile = require('./utils/promiseWhile');
+const promiseWhile = require('./../utils/promiseWhile');
 const dateformat = require('dateformat');
 
 class GetActivitiesCommand extends AbstractCommand {
@@ -30,7 +30,7 @@ class GetActivitiesCommand extends AbstractCommand {
   }
 
   _getAthletesStats() {
-    let athletes = require('../../data/athletes.json');
+    let athletes = require('../../../data/athletes.json');
     if (!athletes) throw new Error('Athletes file not found');
 
     athletes = _.values(athletes);

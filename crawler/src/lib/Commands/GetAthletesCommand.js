@@ -3,7 +3,7 @@
  */
 
 const _ = require('lodash');
-const promiseWhile = require('./utils/promiseWhile');
+const promiseWhile = require('./../utils/promiseWhile');
 const AbstractCommand = require('./AbstractCommand');
 
 class GetAthletesCommand extends AbstractCommand {

@@ -6,7 +6,7 @@
 
 const commandBootstrap = require('./lib/commandBootstrap');
 const config = require('./config.local') || require('./config');
-const GetActivitiesCommand = require('./lib/GetActivitiesCommand');
+const GetActivitiesCommand = require('./lib/Commands/GetActivitiesCommand');
 
 // bootstrap command
 const command = new GetActivitiesCommand();
