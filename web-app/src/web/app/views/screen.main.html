@@ -1,3 +1,22 @@
 <div class="screen main">
-  main
+  <md-content class="md-padding" layout-xs="column" layout="row" layout-wrap>
+    <div flex-xs="100" flex-lg="25" flex-md="33" flex-sm="50" ng-repeat="(i, a) in athletesTop">
+      <md-card>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{ a.totalDistanceMi | number:1 }} mi</span>
+            <span class="md-subhead">{{ a.athlete.name }}</span>
+            <span class="md-subhead">#{{ i + 1 }}</span>
+          </md-card-title-text>
+          <md-card-title-media>
+            <div class="md-media-lg card-media">
+              <a href="https://www.strava.com/athletes/{{ a.athlete.id }}" target="_blank">
+                <img ng-src="{{ a.athlete.pic }}">
+              </a>
+            </div>
+          </md-card-title-media>
+        </md-card-title>
+      </md-card>
+    </div>
+  </md-content>
 </div>

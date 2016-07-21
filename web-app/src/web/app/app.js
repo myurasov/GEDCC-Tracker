@@ -13,6 +13,7 @@ import filters from './app.filters';
 import config from './app.config';
 
 import templatesModule from './_templates'; // cached templates
+import DataRepository from './data.repository';
 
 // define app module
 const app = angular.module('app', [
@@ -24,17 +25,18 @@ const app = angular.module('app', [
 // config
 config(app);
 
+// filters
+filters(app);
+
 // states
 app.config(states);
 
-// filters
-filters(app);
+// services
+app.service('DataRepository', DataRepository);
 
 // bootstrap app
 angular
   .element(document)
-  .ready(function () {
-    angular.bootstrap(document, [app.name]);
-  });
+  .ready(() => angular.bootstrap(document, [app.name]));
 
 export default app;
