@@ -2,6 +2,7 @@
  * Crawl command
  */
 
+const _ = require('lodash');
 const AbstractCommand = require('./AbstractCommand');
 const promiseWhile = require('./utils/promiseWhile');
 const dateformat = require('dateformat');
@@ -29,14 +30,18 @@ class GetActivitiesCommand extends AbstractCommand {
   }
 
   _getAthletesStats() {
-    const athletes = require('../../data/athletes.json');
+    let athletes = require('../../data/athletes.json');
     if (!athletes) throw new Error('Athletes file not found');
+
+    athletes = _.values(athletes);
 
     return promiseWhile(
       () => athletes.length > 0,
       () => {
+        const athlete = athletes.shift();
         this._debug('Athletes left: ', athletes.length)
-        return this._getAthleteStats(athletes.shift())
+        this._debug('Fetching : ', athlete.name)
+        return this._getAthleteStats(athlete.id)
       }
     );
   }
@@ -86,7 +91,7 @@ class GetActivitiesCommand extends AbstractCommand {
                         const distance = parseFloat(a.match(/<li title="Distance">([\d\.]+)/)[1]); // [mi]
                         const pace = a.match(/<li title="Average Pace">([\d\:]+)/)[1]; // [min/mi]
 
-                        this._data[athleteId][activityId] = {activityId, distance, pace};
+                        this._data[athleteId][activityId] = {id: activityId, distance, pace};
                       }
                     }
                   }
