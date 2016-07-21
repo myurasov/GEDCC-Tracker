@@ -44,10 +44,10 @@ class GetAthletesCommand extends AbstractCommand {
             })
             .getHTML('.list-athletes')
             .then(v => {
-              v = v.join('');
-              const m = v.match(/athletes\/(\d+).+alt="([^"]+)/g);
-              const a = m.map(v => v.match(/athletes\/(\d+).+alt="([^"]+)/));
-              a.forEach(e => athletes[e[1]] = {id: e[1], name: e[2]});
+              v = v.join('').replace(/\n/g, ' ');
+              const m = v.match(/alt="([^"]+)".+?src="([^"]+)".+?\/athletes\/(\d+)/g);
+              const a = m.map(v => v.match(/alt="([^"]+)".+?src="([^"]+)".+?\/athletes\/(\d+)/));
+              a.forEach(e => athletes[e[3]] = {name: e[1], pic: e[2], id: e[3]});
             });
         }
       ).then(() => {
