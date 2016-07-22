@@ -16,6 +16,12 @@ module.exports = {
   end_week: 201633,
 
   webdriverio_options: {
+
+    host: 'ondemand.saucelabs.com',
+    port: 80,
+    user: process.env.SAUCE_USERNAME,
+    key: process.env.SAUCE_ACCESS_KEY,
+
     logLevel: 'silent',
     waitforTimeout: 10000,
     desiredCapabilities: {
@@ -28,7 +34,7 @@ module.exports = {
           }
         }
       }
-    }
+    },
   }
 
 };
