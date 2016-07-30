@@ -65,7 +65,7 @@ class GetActivitiesCommand extends AbstractCommand {
 
           .url(`https://www.strava.com/athletes/${athleteId}#interval` +
                `?interval=${week--}&interval_type=week&chart_type=miles&year_offset=0`)
-          .pause(2000)
+          .pause(3000)
           .isVisible('.activity.feed-entry')
           .then(v => {
             if (v) {
