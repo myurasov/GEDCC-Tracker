@@ -8,7 +8,7 @@ pemFile=$(find ${localRoot}/dev/deploy/*.pem | head -1)
 # config
 serverUser=root
 remoteUser=www-data
-rsyncOptions="-avz --delete --exclude=.DS_Store --exclude=.git --exclude=node_modules/ --exclude=data/ --exclude=_private/"
+rsyncOptions="-avz --delete --exclude=.DS_Store --exclude=*.local.* --exclude=.git --exclude=node_modules/ --exclude=data/ --exclude=_private/"
 sshOptions="-i ${pemFile} -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 
 function deploy {

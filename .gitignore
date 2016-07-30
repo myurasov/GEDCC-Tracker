@@ -1,7 +1,7 @@
 .idea
 .DS_Store
+_private/
 node_modules
-_private
 crawler/data/
-*.local.js
-/dev/deploy/do-e.pem
+*.local.*
+/dev/deploy/d*pem
