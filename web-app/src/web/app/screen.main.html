@@ -1,9 +1,8 @@
 <div class="screen main">
   <md-content class="md-padding" layout="row" layout-wrap>
 
-      <div flex="40" flex-xs="100" class="titleCell ccLogo">
-      </div>
-      <div flex="60" flex-xs="100" class="titleCell extraInfo">
+      <a flex="40" flex-xs="100" class="titleCell ccLogo" href="https://www.strava.com/clubs/GEDigital_charity_challenge" target="_blank"></a>
+      <div flex="60" flex-xs="100" class="titleCell extraInfo" ng-show="athletesTop">
         Updated {{ updatedAt | timeAgo }}
       </div>
 
@@ -17,7 +16,7 @@
           <md-card-title-media>
             <div class="md-media-lg card-media">
               <a href="https://www.strava.com/athletes/{{ a.athlete.id }}" target="_blank">
-                <img ng-src="{{ a.athlete.pic | largePic }}">
+                <img class="userpic" ng-src="{{ a.athlete.pic | largePic }}">
               </a>
             </div>
           </md-card-title-media>
