@@ -8,3 +8,5 @@
 /src/web/index.html
 .DS_Store
 _private
+src/web/resources/activities.json
+src/web/resources/athletes.json
