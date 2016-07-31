@@ -22,4 +22,13 @@ export default (app) => {
     }
   })
 
+  /**
+   * Name to class
+   */
+  app.filter('classify', () => v => {
+    if (v) {
+      return v.replace(/ /g, '');
+    }
+  })
+
 };

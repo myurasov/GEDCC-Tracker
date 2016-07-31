@@ -28,8 +28,29 @@
 
   }
 
-  .userpic {
-    border-radius: 2px;
+  .card.athlete {
+
+    @mixin teamLabel($c) {
+      color: darken($c, 35%);
+      background: linear-gradient(to bottom, lighten($c, 10%) 0%, $c 100%);
+      padding: 2px 7px 2px 7px;
+      display: inline-block;
+      border-radius: 5px;
+      text-align: center;
+      line-height: 1.25em;
+      margin-right: 15px;
+    }
+
+    &.teamHarelKodesh {
+      .team {
+        @include teamLabel(#58FFDD);
+      }
+    }
+
+    .userpic {
+      border-radius: 2px;
+    }
+
   }
 
 }
