@@ -7,8 +7,8 @@ export default /* @ngInject */ ($scope, DataRepository) => {
 
   DataRepository.getTop()
     .then(v => {
-      $scope.athletesTop = v;
-      $scope.updatedAt = DataRepository.getActivitiesUpdateDate();
+      $scope.athletesTop = v.athletes;
+      $scope.updatedAt = DataRepository.getUpdatedAt();
       $scope.$digest();
     })
 

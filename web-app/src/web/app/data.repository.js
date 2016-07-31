@@ -46,7 +46,7 @@ export default /* @ngInject */ ($http, athletes_endpoint, activities_endpoint, t
     return new Promise((resolve, reject) => {
       athletesTop = [];
 
-      getAthletes().then(getActivities)
+      getAthletes().then(getActivities).then(getTeams)
         .then(() => {
           // iterate all athletes
           for (const athlete of Object.values(athletesData)) {
@@ -74,12 +74,16 @@ export default /* @ngInject */ ($http, athletes_endpoint, activities_endpoint, t
           }
 
           athletesTop.sort((a, b) => b.totalDistanceMi - a.totalDistanceMi);
-          resolve(athletesTop);
+          resolve({athletes: athletesTop});
 
         }, reject);
     });
   }
 
+  /**
+   * Get teams
+   * @return {Promise({team: [ids]})}
+   */
   function getTeams() {
     return new Promise((resolve, reject) => {
       $http({
@@ -106,12 +110,15 @@ export default /* @ngInject */ ($http, athletes_endpoint, activities_endpoint, t
             const stravaAthlete = Object.values(athletesData)
               .find(v => v.name.toLowerCase() === athlete.name.toLowerCase());
             id = stravaAthlete ? stravaAthlete.id : null
-            console.log(`Strava ID ${id || 'NOT'} detected for: ${athlete.name}`); // !!!
+            // console.log(`Strava ID ${id || 'NOT'} detected for: ${athlete.name}`); // !!!
           }
 
           if (id) {
             if (!teamsData[athlete.team]) teamsData[athlete.team] = [];
             teamsData[athlete.team].push(id);
+
+            // save team to athlete
+            if (athletesData[id]) athletesData[id].team = athlete.team;
           }
         }
 
@@ -122,8 +129,7 @@ export default /* @ngInject */ ($http, athletes_endpoint, activities_endpoint, t
 
   return {
     getTop,
-    getTeams,
-    getActivitiesUpdateDate: () => activitiesUpdateDate
+    getUpdatedAt: () => activitiesUpdateDate
   }
 
 }

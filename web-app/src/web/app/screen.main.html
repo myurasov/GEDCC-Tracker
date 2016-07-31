@@ -10,8 +10,10 @@
       <md-card>
         <md-card-title>
           <md-card-title-text>
-            <span class="md-headline">{{ a.totalDistanceMi | number:1 }} mi</span> <span class="md-subhead">{{ a.athlete.name | name }}</span>
-            <span class="md-subhead">#{{ i + 1 }} <!--of {{ athletesTop.length }} active athletes--></span>
+            <span class="md-headline">{{ a.totalDistanceMi | number:1 }} mi</span>
+            <span class="md-subhead">{{ a.athlete.name | name }}</span>
+            <span class="md-subhead" ng-if="a.athlete.team">Team: {{ a.athlete.team }}</span>
+            <span class="md-subhead">#{{ i + 1 }}</span>
           </md-card-title-text>
           <md-card-title-media>
             <div class="md-media-lg card-media">
