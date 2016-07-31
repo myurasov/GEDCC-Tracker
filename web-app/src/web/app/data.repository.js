@@ -3,13 +3,14 @@
  * @author Mikhail Yurasov <me@yurasov.me>
  */
 
-export default /* @ngInject */ ($http, athletes_endpoint, activities_endpoint) => {
+export default /* @ngInject */ ($http, athletes_endpoint, activities_endpoint, teams_endpoint) => {
 
   let athletesData,
     athletesUpdateDate,
     activitiesData,
     activitiesUpdateDate,
-    athletesTop;
+    athletesTop,
+    teamsData;
 
   function getAthletes() {
     return new Promise((resolve, reject) => {
@@ -79,8 +80,49 @@ export default /* @ngInject */ ($http, athletes_endpoint, activities_endpoint) =
     });
   }
 
+  function getTeams() {
+    return new Promise((resolve, reject) => {
+      $http({
+        method: 'GET',
+        url: teams_endpoint
+      }).then(r => {
+
+        const csv = r.data
+          .split('\n') // split lines
+          .map(e => e.split(','))
+          .map(e => ({name: e[0], id: e[1], team: e[2]})); // read
+
+        csv.shift(); // remove header
+
+        teamsData = {}; // leader: [member_ids]
+
+        // connect to athlete ids
+        for (const athlete of csv) {
+
+          let id = athlete.id;
+
+          // find athlete id by name
+          if (!id) {
+            const stravaAthlete = Object.values(athletesData)
+              .find(v => v.name.toLowerCase() === athlete.name.toLowerCase());
+            id = stravaAthlete ? stravaAthlete.id : null
+            console.log(`Strava ID ${id || 'NOT'} detected for: ${athlete.name}`); // !!!
+          }
+
+          if (id) {
+            if (!teamsData[athlete.team]) teamsData[athlete.team] = [];
+            teamsData[athlete.team].push(id);
+          }
+        }
+
+        resolve(teamsData);
+      }, reject)
+    });
+  }
+
   return {
     getTop,
+    getTeams,
     getActivitiesUpdateDate: () => activitiesUpdateDate
   }
 

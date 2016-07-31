@@ -12,6 +12,7 @@ export default (app) => {
 
       app.constant('athletes_endpoint', '/resources/athletes.json');
       app.constant('activities_endpoint', '/resources/activities.json');
+      app.constant('teams_endpoint', '/resources/teams.csv');
 
       break;
 
@@ -19,6 +20,7 @@ export default (app) => {
 
       app.constant('athletes_endpoint', '/resources/athletes.json');
       app.constant('activities_endpoint', '/resources/activities.json');
+      app.constant('teams_endpoint', '/resources/teams.csv');
 
   }
 
