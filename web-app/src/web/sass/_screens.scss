@@ -32,6 +32,7 @@
 
     @mixin teamLabel($c) {
       color: darken($c, 35%);
+      background: $c;
       background: linear-gradient(to bottom, lighten($c, 10%) 0%, $c 100%);
       padding: 2px 7px 2px 7px;
       display: inline-block;
@@ -43,7 +44,7 @@
 
     &.teamHarelKodesh {
       .team {
-        @include teamLabel(#58FFDD);
+        @include teamLabel($teamHarelKodeshColor);
       }
     }
 
@@ -51,6 +52,22 @@
       border-radius: 2px;
     }
 
+  }
+
+  .card.team {
+
+    .team {
+      font-size: 2em;
+    }
+
+
+    &.teamHarelKodesh {
+      md-card {
+        background: lighten($teamHarelKodeshColor, 15%);
+        background: linear-gradient(to bottom, lighten($teamHarelKodeshColor, 25%) 0%, lighten($teamHarelKodeshColor, 15%) 100%);
+        color: darken($teamHarelKodeshColor, 55%);
+      }
+    }
   }
 
 }

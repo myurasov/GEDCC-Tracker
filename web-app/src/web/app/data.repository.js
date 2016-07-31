@@ -79,8 +79,8 @@ export default /* @ngInject */ ($http, athletes_endpoint, activities_endpoint, t
 
         athletesTop.push({
           athlete,
-          totalDistanceMi: miles,
-          totalTimeSec: athleteTime
+          miles: miles,
+          seconds: athleteTime
         });
 
         // team data
@@ -92,7 +92,7 @@ export default /* @ngInject */ ($http, athletes_endpoint, activities_endpoint, t
     }
 
     // sort athletes
-    athletesTop.sort((a, b) => b.totalDistanceMi - a.totalDistanceMi);
+    athletesTop.sort((a, b) => b.miles - a.miles);
 
     // sort teams
     teamsTop = Object.values(teams).sort((a, b) => b.miles - a.miles);
