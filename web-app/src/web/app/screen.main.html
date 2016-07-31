@@ -6,7 +6,7 @@
         <md-button md-no-ink ng-click="$state.go('main')" ng-class="{'md-primary md-raised': $state.is('main')}">Athletes</md-button>
         <md-button md-no-ink ng-click="$state.go('teams')" ng-class="{'md-primary md-raised': $state.is('teams')}">Teams</md-button>
     </div>
-    <div flex="30" flex-xs="100" class="titleCell extraInfo">
+    <div flex="30" flex-xs="100" class="titleCell extraInfo" ng-show="updatedAt">
       Updated {{ updatedAt | timeAgo }}
     </div>
 
