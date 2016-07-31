@@ -1,0 +1,18 @@
+<div flex="100" layout-wrap layout="row">
+
+  <div flex-xs="100" flex-lg="25" flex-md="33" flex-sm="50" flex-xl="20" ng-repeat="(i, t) in teamsTop" class="card team" ng-class='"team" + (t.team | classify)'>
+
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">{{ t.miles | number:1 }} mi</span>
+          <span class="md-subhead"><span class="team">Team {{ t.team }}</span></span>
+          <span class="md-subhead">#{{ i + 1 }}</span>
+        </md-card-title-text>
+      </md-card-title>
+    </md-card>
+
+
+  </div>
+
+  </div>

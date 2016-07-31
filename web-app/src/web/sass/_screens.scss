@@ -2,9 +2,15 @@
 
   .titleCell {
     padding: 10px;
-    height: 50px;
+    min-height: 80px;
+    line-height: 60px;
     display: block;
     outline: none;
+
+    @include screen_xs {
+      min-height: 0;
+      line-height: initial;
+    }
 
     &.ccLogo {
       background-image: url('/images/ge.svg');
@@ -12,9 +18,15 @@
       background-size: contain;
       background-position: center left;
 
+      @include screen_sm {
+        background-image: url('/images/ge-sm.svg');
+      }
+
       @include screen_xs {
         background-position: center center;
       }
+
+      min-height: 50px !important;
     }
 
     &.extraInfo {
@@ -22,14 +34,64 @@
 
       @include screen_xs {
         text-align: center;
-        font-size: 0.9em;
       }
+    }
+
+    &.switch {
+      text-align: center;
+      white-space: nowrap;
     }
 
   }
 
-  .userpic {
-    border-radius: 2px;
+  .content {
+    margin-top: 5px;
+
+    @include screen_xs {
+      margin-top: 0;
+    }
+  }
+
+  .card.athlete {
+
+    @mixin teamLabel($c) {
+      color: darken($c, 45%);
+      background: $c;
+      background: linear-gradient(to bottom, lighten($c, 10%) 0%, $c 100%);
+      padding: 2px 7px 2px 7px;
+      display: inline-block;
+      border-radius: 5px;
+      text-align: center;
+      line-height: 1.25em;
+      margin-right: $masterPadding;
+    }
+
+    &.teamHarelKodesh {
+      .team {
+        @include teamLabel($teamHarelKodeshColor);
+      }
+    }
+
+    .userpic {
+      border-radius: 2px;
+    }
+
+  }
+
+  .card.team {
+
+    .team {
+      font-size: 2em;
+      line-height: 175%;
+    }
+
+    &.teamHarelKodesh {
+      md-card {
+        background: lighten($teamHarelKodeshColor, 15%);
+        background: linear-gradient(to bottom, lighten($teamHarelKodeshColor, 25%) 0%, lighten($teamHarelKodeshColor, 15%) 100%);
+        color: darken($teamHarelKodeshColor, 55%);
+      }
+    }
   }
 
 }
