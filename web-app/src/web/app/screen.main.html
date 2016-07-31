@@ -1,12 +1,16 @@
 <div class="screen main">
   <md-content class="md-padding" layout="row" layout-wrap>
 
-    <a flex="40" flex-xs="100" class="titleCell ccLogo" href="https://www.strava.com/clubs/GEDigital_charity_challenge" target="_blank"></a>
-    <div flex="60" flex-xs="100" class="titleCell extraInfo">
+    <a flex="30" flex-xs="100" class="titleCell ccLogo" href="https://www.strava.com/clubs/GEDigital_charity_challenge" target="_blank"></a>
+    <div flex="40" flex-xs="100" class="titleCell switch">
+        <md-button>Athletes</md-button>
+        <md-button class="md-primary md-raised" md-no-ink>Teams</md-button>
+    </div>
+    <div flex="30" flex-xs="100" class="titleCell extraInfo">
       Updated {{ updatedAt | timeAgo }}
     </div>
 
-    <div ui-view="content" flex="100"></div>
+    <div ui-view="content" flex="100" class="content"></div>
 
   </md-content>
 </div>

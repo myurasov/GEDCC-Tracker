@@ -10,6 +10,10 @@
 body, input, textarea {
   font-family: '.SFNSDisplay-Regular', 'GE Inspira', 'Helvetica Neue', 'Helvetica', sans-serif;
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: subpixel-antialiased;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font-weight: bold !important;
 }
 

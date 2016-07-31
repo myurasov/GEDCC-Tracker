@@ -26,6 +26,9 @@ export default (app) => {
 
   // <editor-fold desc="material theming" defaultstate="collapsed">
   app.config(/* @ngInject */ ($mdThemingProvider) => {
+    $mdThemingProvider.theme('default')
+      .primaryPalette('indigo')
+      .accentPalette('orange');
   });
   // </editor-fold>
 
