@@ -98,12 +98,20 @@
       line-height: 175%;
     }
 
-    &.teamHarelKodesh {
+    @mixin teamCard($c) {
       md-card {
-        background: lighten($teamHarelKodeshColor, 15%);
-        background: linear-gradient(to bottom, lighten($teamHarelKodeshColor, 25%) 0%, lighten($teamHarelKodeshColor, 15%) 100%);
-        color: darken($teamHarelKodeshColor, 55%);
+        background: lighten($c, 15%);
+        background: linear-gradient(to bottom, lighten($c, 25%) 0%, lighten($c, 15%) 100%);
+        color: darken($c, 55%);
       }
+    }
+
+    &.teamHarelKodesh {
+      @include teamCard($teamHarelKodeshColor);
+    }
+
+    &.teamKhozemaShipchandler {
+      @include teamCard($teamKhozemaShipchandlerColor);
     }
   }
 
