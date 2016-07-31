@@ -55,6 +55,10 @@
 
   .card.athlete {
 
+    .md-subhead {
+      margin-right: $masterPadding;
+    }
+
     @mixin teamLabel($c) {
       color: darken($c, 45%);
       background: $c;
@@ -64,7 +68,6 @@
       border-radius: 5px;
       text-align: center;
       line-height: 1.25em;
-      margin-right: $masterPadding;
     }
 
     &.teamHarelKodesh {
@@ -73,10 +76,19 @@
       }
     }
 
+    &.teamKhozemaShipchandler {
+      .team {
+        @include teamLabel($teamKhozemaShipchandlerColor);
+      }
+    }
+
     .userpic {
       border-radius: 2px;
     }
 
+    .team {
+      margin-top: $masterPadding;
+    }
   }
 
   .card.team {

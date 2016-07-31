@@ -31,4 +31,13 @@ export default (app) => {
     }
   })
 
+  /**
+   * Name to team abbr
+   */
+  app.filter('teamify', () => v => {
+    if (v) {
+      return v.split(' ').map(w => w.substr(0, 1).toUpperCase()).join('');
+    }
+  })
+
 };
