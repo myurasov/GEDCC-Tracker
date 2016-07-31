@@ -18,6 +18,10 @@
       background-size: contain;
       background-position: center left;
 
+      @include screen_sm {
+        background-image: url('/images/ge-sm.svg');
+      }
+
       @include screen_xs {
         background-position: center center;
       }
@@ -78,8 +82,8 @@
 
     .team {
       font-size: 2em;
+      line-height: 175%;
     }
-
 
     &.teamHarelKodesh {
       md-card {
