@@ -46,7 +46,7 @@ export default /* @ngInject */ ($http, athletes_endpoint, activities_endpoint, t
     return new Promise((resolve, reject) => {
       athletesTop = [];
 
-      getAthletes().then(getActivities).then(getTeams)
+      Promise.all([getAthletes(), getActivities()]).then(getTeams)
         .then(() => {
           // iterate all athletes
           for (const athlete of Object.values(athletesData)) {
