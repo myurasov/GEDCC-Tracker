@@ -18,6 +18,9 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         'screen': {
           templateUrl: 'app/screen.main.html',
           controller: ScreenMainController
+        },
+        'content@main': {
+          templateUrl: 'app/athletes.html'
         }
       }
     });
