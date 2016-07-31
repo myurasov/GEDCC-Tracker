@@ -7,7 +7,7 @@
           <span class="md-headline">{{ a.miles | number:1 }} mi</span>
           <span class="md-subhead">{{ a.athlete.name | name }}</span>
           <span class="md-subhead">#{{ i + 1 }}</span><br>
-          <span class="md-subhead" ng-if="a.athlete.team"><a ui-sref="teams"><span class="team">Team: {{ a.athlete.team }}</span></a></span>
+          <span class="md-subhead" ng-if="a.athlete.team"><a ui-sref="teams"><span class="team">Team {{ a.athlete.team }}</span></a></span>
         </md-card-title-text>
         <md-card-title-media>
           <div class="md-media-lg card-media">
