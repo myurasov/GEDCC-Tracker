@@ -3,7 +3,10 @@
  * @author Mikhail Yurasov <me@yurasov.me>
  */
 
-export default /* @ngInject */ ($scope, DataRepository, $timeout) => {
+export default /* @ngInject */ ($scope, DataRepository, $timeout, $state) => {
+  
+  $scope.$state = $state;
+  
   /**
    * Refresh data
    */
