@@ -11,6 +11,7 @@ export default /* @ngInject */ ($scope, DataRepository, $timeout) => {
     DataRepository.getTop()
       .then(v => {
         $scope.athletesTop = v.athletes;
+        $scope.teamsTop = v.teams;
         $scope.updatedAt = DataRepository.getUpdatedAt();
         $scope.$digest();
       });

@@ -10,7 +10,8 @@ export default /* @ngInject */ ($http, athletes_endpoint, activities_endpoint, t
     activitiesData,
     activitiesUpdateDate,
     athletesTop,
-    teamsData;
+    teamsData,
+    teamsTop;
 
   function getAthletes() {
     return new Promise((resolve, reject) => {
@@ -44,40 +45,57 @@ export default /* @ngInject */ ($http, athletes_endpoint, activities_endpoint, t
    */
   function getTop() {
     return new Promise((resolve, reject) => {
-      athletesTop = [];
-
       Promise.all([getAthletes(), getActivities()]).then(getTeams)
         .then(() => {
-          // iterate all athletes
-          for (const athlete of Object.values(athletesData)) {
-
-            const athleteActivities = Object.values(activitiesData[String(athlete.id)]);
-
-            if (athleteActivities.length > 0) {
-              // distance [mi]
-              const athleteDistance = athleteActivities.map(v => v.distance).reduce((a, b) => a + b);
-
-              // elapsed time [sec]
-              const athleteTime = athleteActivities
-                .map(v => {
-                  const t = v.pace.split(':');
-                  return (parseInt(t[0]) * 60 + parseInt(t[1])) * athleteDistance;
-                })
-                .reduce((a, b) => a + b);
-
-              athletesTop.push({
-                athlete,
-                totalDistanceMi: athleteDistance,
-                totalTimeSec: athleteTime
-              });
-            }
-          }
-
-          athletesTop.sort((a, b) => b.totalDistanceMi - a.totalDistanceMi);
-          resolve({athletes: athletesTop});
-
+          calculateTop();
+          resolve({athletes: athletesTop, teams: teamsTop});
         }, reject);
     });
+  }
+
+  function calculateTop() {
+
+    const teams = {};
+
+    athletesTop = [];
+    teamsTop = [];
+
+    // iterate all athletes
+    for (const athlete of Object.values(athletesData)) {
+
+      const athleteActivities = Object.values(activitiesData[String(athlete.id)]);
+
+      if (athleteActivities.length > 0) {
+        // distance [mi]
+        const miles = athleteActivities.map(v => v.distance).reduce((a, b) => a + b);
+
+        // elapsed time [sec]
+        const athleteTime = athleteActivities
+          .map(v => {
+            const t = v.pace.split(':');
+            return (parseInt(t[0]) * 60 + parseInt(t[1])) * miles;
+          })
+          .reduce((a, b) => a + b);
+
+        athletesTop.push({
+          athlete,
+          totalDistanceMi: miles,
+          totalTimeSec: athleteTime
+        });
+
+        // team data
+        if (athlete.team) {
+          if (!teams[athlete.team]) teams[athlete.team] = {miles: 0, team: athlete.team}
+          teams[athlete.team].miles += miles;
+        }
+      }
+    }
+
+    // sort athletes
+    athletesTop.sort((a, b) => b.totalDistanceMi - a.totalDistanceMi);
+
+    // sort teams
+    teamsTop = Object.values(teams).sort((a, b) => b.miles - a.miles);
   }
 
   /**
