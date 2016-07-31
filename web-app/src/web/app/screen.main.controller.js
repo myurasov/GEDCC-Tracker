@@ -4,9 +4,9 @@
  */
 
 export default /* @ngInject */ ($scope, DataRepository, $timeout, $state) => {
-  
+
   $scope.$state = $state;
-  
+
   /**
    * Refresh data
    */
@@ -15,7 +15,7 @@ export default /* @ngInject */ ($scope, DataRepository, $timeout, $state) => {
       .then(v => {
         $scope.athletesTop = v.athletes;
         $scope.teamsTop = v.teams;
-        $scope.updatedAt = DataRepository.getUpdatedAt();
+        $scope.$parent.updatedAt = DataRepository.getUpdatedAt();
         $scope.$digest();
       });
 

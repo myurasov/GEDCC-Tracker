@@ -2,13 +2,9 @@
   <md-content class="md-padding" layout="row" layout-wrap>
 
     <a flex="30" flex-xs="100" class="titleCell ccLogo" href="https://www.strava.com/clubs/GEDigital_charity_challenge" target="_blank"></a>
-    <div flex="40" flex-xs="100" class="titleCell switch" ng-show="$state.is('teams')">
-        <a ui-sref="main"><md-button>Athletes</md-button></a>
-        <a ui-sref="teams"><md-button class="md-primary md-raised" md-no-ink>Teams</md-button></a>
-    </div>
-    <div flex="40" flex-xs="100" class="titleCell switch" ng-show="$state.is('main')">
-        <a ui-sref="main"><md-button class="md-primary md-raised" md-no-ink>Athletes</md-button></a>
-        <a ui-sref="teams"><md-button>Teams</md-button></a>
+    <div flex="40" flex-xs="100" class="titleCell switch" ng-if="1 || $state.is('teams')">
+        <md-button md-no-ink ng-click="$state.go('main')" ng-class="{'md-primary md-raised': $state.is('main')}">Athletes</md-button>
+        <md-button md-no-ink ng-click="$state.go('teams')" ng-class="{'md-primary md-raised': $state.is('teams')}">Teams</md-button>
     </div>
     <div flex="30" flex-xs="100" class="titleCell extraInfo">
       Updated {{ updatedAt | timeAgo }}
