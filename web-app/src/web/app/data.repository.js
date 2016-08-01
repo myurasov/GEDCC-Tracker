@@ -73,7 +73,14 @@ export default /* @ngInject */ ($http, athletes_endpoint, activities_endpoint, t
         const athleteTime = athleteActivities
           .map(v => {
             const t = v.pace.split(':');
-            return (parseInt(t[0]) * 60 + parseInt(t[1])) * miles;
+            if (t.length === 2) { // min:sec
+              return (parseInt(t[0]) * 60 + parseInt(t[1])) * miles;
+            } else if (t.length === 3) { // hr:min:sec
+              return (parseInt(t[0]) * 3600 + parseInt(t[1]) * 60 + parseInt(t[2])) * miles;
+            } else {
+              console.error('Can\'t parse pace:', v.pace);
+              return 0;
+            }
           })
           .reduce((a, b) => a + b);
 
