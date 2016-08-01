@@ -111,7 +111,7 @@ export default /* @ngInject */ ($http, athletes_endpoint, activities_endpoint, t
 
         const csv = r.data
           .split('\n') // split lines
-          .map(e => e.split(','))
+          .map(e => e.split(',').map(e => e.trim(e)))
           .map(e => ({name: e[0], id: e[1], team: e[2]})); // read
 
         csv.shift(); // remove header
