@@ -5,3 +5,4 @@ node_modules
 crawler/data/
 *.local.*
 /dev/deploy/d*pem
+/todo
