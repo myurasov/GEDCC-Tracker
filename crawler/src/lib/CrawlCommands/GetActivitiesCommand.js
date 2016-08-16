@@ -77,8 +77,12 @@ class GetActivitiesCommand extends AbstractCommand {
                 .getHTML('.activity.feed-entry')
                 .then(activities => {
 
+                  // if there is obnly one activity it's returned as string
+                  if (typeof activities === 'string') activities = [activities];
+
                   for (const a of activities) {
                     if (a.match(/icon-run/) || a.match(/icon-walk/)/* interested in runs/walks only */) {
+
                       if (a.match(/<span class="unit">/) /* otherwise it's a blank one */) {
 
                         // check if distance is in miles
