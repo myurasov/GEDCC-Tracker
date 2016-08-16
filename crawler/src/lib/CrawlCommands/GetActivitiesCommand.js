@@ -70,6 +70,9 @@ class GetActivitiesCommand extends AbstractCommand {
           .then(v => {
             if (v) {
 
+              // xxx
+              console.log('week', week+1);
+
               return this._client
                 .getHTML('.activity.feed-entry')
                 .then(activities => {
@@ -80,6 +83,7 @@ class GetActivitiesCommand extends AbstractCommand {
 
                         // check if distance is in miles
                         if (!a.match(/<span class="unit">mi/) /* distance */ || !a.match(/<span class="unit">\/mi/) /* pace */) {
+                          // [debug]
                           this._debug('Activity HTML:', a);
                           throw new Error('Only miles are supported as units');
                         }
@@ -87,6 +91,9 @@ class GetActivitiesCommand extends AbstractCommand {
                         const activityId = a.match(/Activity-(\d+)/)[1];
                         const distance = parseFloat(a.match(/<li title="Distance">([\d\.]+)/)[1]); // [mi]
                         const pace = a.match(/<li title="Average Pace">([\d\:]+)/)[1]; // [min/mi]
+
+                        // [debug]
+                        if (this._data[athleteId][activityId]) this._debug('Have activity:', activityId);
 
                         this._data[athleteId][activityId] = {id: activityId, distance, pace};
                       }
