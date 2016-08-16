@@ -70,8 +70,8 @@ class GetActivitiesCommand extends AbstractCommand {
           .then(v => {
             if (v) {
 
-              // xxx
-              console.log('week', week+1);
+              // [debug]
+              this._debug('Reading week:', week+1);
 
               return this._client
                 .getHTML('.activity.feed-entry')
