@@ -100,6 +100,9 @@ class GetActivitiesCommand extends AbstractCommand {
                         if (this._data[athleteId][activityId]) this._debug('Have activity:', activityId);
 
                         this._data[athleteId][activityId] = {id: activityId, distance, pace};
+
+                        // [debug]
+                        this._debug('Got activity:', this._data[athleteId][activityId])
                       }
                     }
                   }
