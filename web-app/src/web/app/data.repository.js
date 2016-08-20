@@ -63,7 +63,7 @@ export default /* @ngInject */ ($http, athletes_endpoint, activities_endpoint, t
     // iterate all athletes
     for (const athlete of Object.values(athletesData)) {
 
-      const athleteActivities = Object.values(activitiesData[String(athlete.id)]);
+      const athleteActivities = Object.values(activitiesData[String(athlete.id)] || {});
 
       if (athleteActivities.length > 0) {
         // distance [mi]
