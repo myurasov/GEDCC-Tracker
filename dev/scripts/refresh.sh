@@ -11,7 +11,7 @@ cp -f ${localRoot}/crawler/data/athletes.json ${localRoot}/web-app/src/web/resou
 cp -f ${localRoot}/crawler/data/activities.json ${localRoot}/web-app/src/web/resources/
 
 # backup files
-backupDir="/var/log/gedcc-back/$(date +%F_%T)"
+backupDir="/var/log/gedcc-back/$(date +%F/%T)"
 mkdir -pv ${backupDir}
 cp -v ${localRoot}/web-app/src/web/resources/*.* ${backupDir}
 
